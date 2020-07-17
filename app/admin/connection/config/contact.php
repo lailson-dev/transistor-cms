@@ -14,6 +14,7 @@ if(isset($_POST)) {
 	$crud->setTitle($name);
 	$crud->setEmailReceiver($email);
 	$crud->setDescription($message);
+	$crud->setStatus(0);
 
 	if(!$crud->insertMessage())
 		header('Location: ../../../../index.php?false');

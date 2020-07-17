@@ -12,7 +12,7 @@
 		$_SESSION['messageEmail'] = $message->message_email;
 	} else if(isset($_POST['input-unconfirm-delete']))
 		header('Location: messages.php');
-	else {
+	else if(isset($_POST['input-confirm-delete'])) {
 		$delete = new Crud;
 		$delete->setId($_SESSION['idMessage']);
 

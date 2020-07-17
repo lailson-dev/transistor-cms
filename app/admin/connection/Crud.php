@@ -10,6 +10,7 @@ class Crud extends Connection
 	private $emailReceiver;
 	private $backgroundImage;
 	private $imageGame;
+	private $status;
 
 	private $order = '';
 	private $where = ' WHERE ';
@@ -20,6 +21,7 @@ class Crud extends Connection
 	public function setEmailReceiver($emailReceiver){$this->emailReceiver = $emailReceiver;}
 	public function setBackgroundImage($backgroundImage){$this->backgroundImage = $backgroundImage;}
 	public function setImageGame($imageGame){$this->imageGame = $imageGame;}
+	public function setStatus($status){$this->status = $status;}
 
 	public function insertSpotlight()
 	{
@@ -56,11 +58,12 @@ class Crud extends Connection
 
 	public function insertMessage()
 	{
-		$sql = "INSERT INTO messages (message_name, message_email, message_text) VALUES (:message_name, :message_email, :message_text)";
+		$sql = "INSERT INTO messages (message_name, message_email, message_text, status) VALUES (:message_name, :message_email, :message_text, :status)";
 		$stmt = Connection::prepare($sql);
 		$stmt->bindParam(':message_name', $this->title);
 		$stmt->bindParam(':message_email', $this->emailReceiver);
 		$stmt->bindParam(':message_text', $this->description);
+		$stmt->bindParam(':status', $this->status);
 		
 		return $stmt->execute();
 	}
@@ -77,6 +80,16 @@ class Crud extends Connection
 		return $stmt->execute();
 	}
 
+	public function updateMessage()
+	{
+		$sql = "UPDATE messages SET status = :status WHERE id = :id";
+		$stmt = Connection::prepare($sql);
+		$stmt->bindParam(':status', $this->status);
+		$stmt->bindParam(':id', $this->id);
+		
+		return $stmt->execute();
+	}
+
 	public function deleteMessage()
 	{
 		$sql = "DELETE FROM messages WHERE id = :id";
@@ -84,6 +97,15 @@ class Crud extends Connection
 		$stmt->bindParam(':id', $this->id);
 		
 		return $stmt->execute();
+	}
+
+	public function readMessage($table)
+	{
+		$sql = "SELECT * FROM `{$table}` WHERE status = 0";		
+		$stmt = Connection::prepare($sql);
+		$stmt->execute();
+
+		return $stmt->fetchAll();
 	}
 
 	public function read($table, $condition = false, $order = false)

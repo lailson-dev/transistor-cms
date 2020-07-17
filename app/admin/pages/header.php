@@ -1,4 +1,4 @@
-<?php include_once 'connection/Crud.php'; ?>
+<?php include_once 'connection/Crud.php';?>
 <!doctype html>
 <html lang="en">
   <head>

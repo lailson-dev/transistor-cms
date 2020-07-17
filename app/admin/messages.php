@@ -2,7 +2,7 @@
 	include_once 'pages/header.php';
 
 	$message 	= new Crud;
-	$messages 	= $message->read('messages', 1);
+	$messages 	= $message->readMessage('messages');
  ?>
 <div class="row">
 	<div class="col-md-8">
@@ -23,7 +23,7 @@
 		      <td><?= $message->message_email; ?></td>
 		      <td colspan="2"><?= $message->message_text; ?></td>
 		      <td>
-		      	<form action="editMessage.php" method="POST">
+		      	<form action="message.php" method="POST">
 		      		<input type="hidden" name="input-edit-message" value="<?= $message->id; ?>"/>
 		      		<button type="submit" class="btn btn-primary" title="Responder email"><span data-feather="message-circle"></span></button>
 		      	</form>
