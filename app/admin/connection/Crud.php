@@ -53,6 +53,17 @@ class Crud extends Connection
 		return $stmt->execute();
 	}
 
+	public function insertMessage()
+	{
+		$sql = "INSERT INTO messages (message_name, message_email, message_text) VALUES (:message_name, :message_email, :message_text)";
+		$stmt = Connection::prepare($sql);
+		$stmt->bindParam(':message_name', $this->title);
+		$stmt->bindParam(':message_email', $this->emailReceiver);
+		$stmt->bindParam(':message_text', $this->description);
+		
+		return $stmt->execute();
+	}
+
 	public function updateContact()
 	{
 		$sql = "UPDATE form_contact SET form_title = :form_title, form_description = :form_description, form_email_receiver = :form_email_receiver WHERE id = :id";

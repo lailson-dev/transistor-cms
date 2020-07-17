@@ -68,7 +68,7 @@
 						<p class="lead"><?= $contact->form_description; ?></p>
 					</div>
 				</div>
-				<form action="#" class="row col-md-8">
+				<form action="app/admin/connection/config/contact.php" class="row col-md-8" method="POST">
 					<div class="form-group col-md-6">
 						<input type="text" class="form-control" name="input-name" placeholder="Nome">
 					</div>

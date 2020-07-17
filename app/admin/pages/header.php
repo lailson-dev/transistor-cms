@@ -43,8 +43,14 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="message.php">
+                  <span data-feather="send"></span>
+                  Mensagens
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="form.php">
-                  <span data-feather="users"></span>
+                  <span data-feather="settings"></span>
                   Configurar Formulário
                 </a>
               </li>
