@@ -44,7 +44,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="message.php">
+                <a class="nav-link" href="messages.php">
                   <span data-feather="send"></span>
                   Mensagens
                 </a>
