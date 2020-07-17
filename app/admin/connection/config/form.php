@@ -2,7 +2,7 @@
 
 if(isset($_POST) && isset($_POST['form-send'])) {
 	$title 			 = filter_input(INPUT_POST, 'input-title-form', FILTER_SANITIZE_SPECIAL_CHARS);
-	$description	 = filter_input(INPUT_POST, 'input-description-update', FILTER_SANITIZE_SPECIAL_CHARS);
+	$description	 = filter_input(INPUT_POST, 'input-description-form', FILTER_SANITIZE_SPECIAL_CHARS);
 	$email 			 = filter_input(INPUT_POST, 'input-email-form', FILTER_SANITIZE_SPECIAL_CHARS);
 
 	if(!$title || !$description || !$email)

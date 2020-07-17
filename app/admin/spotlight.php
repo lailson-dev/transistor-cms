@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
       <label for="input-description-game">Descrição curta do Jogo</label>
-      <textarea style="resize: none;" class="form-control" id="input-description-game" name="input-description-game" rows="3"></textarea>
+      <textarea style="resize: none;" class="form-control" id="input-description-game" name="input-description-game" rows="3" placeholder="Não digite entre aspas, no front-end já está estilizado assim."></textarea>
     </div>
     <div class="form-group">
       <label>Imagem do jogo</label>
