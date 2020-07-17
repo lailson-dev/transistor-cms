@@ -4,6 +4,7 @@
 	$message 	= new Crud;
 	$messages 	= $message->readMessage('messages');
  ?>
+ <h2>Listagem das Mensagens</h2>
 <div class="row">
 	<div class="col-md-8">
 		<table class="table table-striped">

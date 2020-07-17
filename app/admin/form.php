@@ -3,7 +3,6 @@
 
   $crud = new Crud;
   $result = $crud->read('form_contact');
-  var_dump($result);
 ?>
 
 <h2 class="mt-5">Cadastrar dados do formulário</h2>
