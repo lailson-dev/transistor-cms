@@ -1,4 +1,9 @@
-<?php include_once 'pages/header.php'; ?>
+<?php
+	include_once 'pages/header.php';
+
+	$message 	= new Crud;
+	$messages 	= $message->read('messages', 1);
+ ?>
 <div class="row">
 	<div class="col-md-8">
 		<table class="table table-striped">
@@ -11,60 +16,26 @@
 		    </tr>
 		  </thead>
 		  <tbody>
+		  	<?php foreach ($messages as $message): ?>
 		    <tr>
-		      <th>1</th>
-		      <td>Mark</td>
-		      <td>Otto@gmail.com</td>
-		      <td colspan="2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, et, quae laudantium architecto fuga reiciendis dolor veniam omnis consequatur harum nesciunt sint quod placeat, quam animi officia rem maiores nemo.</td>
+		      <th><?= $message->id; ?></th>
+		      <td><?= $message->message_name; ?></td>
+		      <td><?= $message->message_email; ?></td>
+		      <td colspan="2"><?= $message->message_text; ?></td>
 		      <td>
-		      	<form action="#">
-		      		<input type="hidden" value="1">
-		      		<button type="submit" class="btn btn-primary"><span data-feather="edit"></span></button>
+		      	<form action="editMessage.php" method="POST">
+		      		<input type="hidden" name="input-edit-message" value="<?= $message->id; ?>"/>
+		      		<button type="submit" class="btn btn-primary" title="Responder email"><span data-feather="message-circle"></span></button>
 		      	</form>
 		      </td>
 		      <td>
-		      	<form action="#">
-		      		<input type="hidden" value="1">
-		      		<button type="submit" class="btn btn-danger"><span data-feather="trash-2"></span></button>
+		      	<form action="deleteMessage.php" method="POST">
+		      		<input type="hidden" name="input-delete-message" value="<?= $message->id; ?>"/>
+		      		<button type="submit" class="btn btn-danger" title="Apagar email"><span data-feather="trash-2"></span></button>
 		      	</form>
 		      </td>
 		    </tr>
-		    <tr>
-		      <th>2</th>
-		      <td>Jacob</td>
-		      <td>Thornton@gmail.com</td>
-		      <td colspan="2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, et, quae laudantium architecto fuga reiciendis dolor veniam omnis consequatur harum nesciunt sint quod placeat, quam animi officia rem maiores nemo.</td>
-		      <td>
-		      	<form action="#">
-		      		<input type="hidden" value="1">
-		      		<button type="submit" class="btn btn-primary"><span data-feather="edit"></span></button>
-		      	</form>
-		      </td>
-		      <td>
-		      	<form action="#">
-		      		<input type="hidden" value="1">
-		      		<button type="submit" class="btn btn-danger"><span data-feather="trash-2"></span></button>
-		      	</form>
-		      </td>
-		    </tr>
-		    <tr>
-		      <th>3</th>
-		      <td>Larry</td>
-		      <td>the Bird@gmail.com</td>
-		      <td colspan="2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, et, quae laudantium architecto fuga reiciendis dolor veniam omnis consequatur harum nesciunt sint quod placeat, quam animi officia rem maiores nemo.</td>
-		      <td>
-		      	<form action="deleteMessage.php">
-		      		<input type="hidden" name="input-edit-message" value="1">
-		      		<button type="submit" class="btn btn-primary"><span data-feather="edit"></span></button>
-		      	</form>
-		      </td>
-		      <td>
-		      	<form action="deleteMessage.php">
-		      		<input type="hidden" name="input-delete-message" value="1">
-		      		<button type="submit" class="btn btn-danger"><span data-feather="trash-2"></span></button>
-		      	</form>
-		      </td>
-		    </tr>
+			<?php endforeach; ?>
 		  </tbody>
 		</table>
 	</div>

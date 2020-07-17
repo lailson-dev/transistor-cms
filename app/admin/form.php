@@ -1,6 +1,5 @@
 <?php
   include_once 'pages/header.php';
-  include_once 'connection/Crud.php';
 
   $crud = new Crud;
   $result = $crud->read('form_contact');

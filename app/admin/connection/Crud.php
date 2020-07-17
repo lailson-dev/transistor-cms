@@ -12,6 +12,7 @@ class Crud extends Connection
 	private $imageGame;
 
 	private $order = '';
+	private $where = ' WHERE ';
 
 	public function setId($id){$this->id = $id;}
 	public function setTitle($title){$this->title = $title;}
@@ -76,6 +77,15 @@ class Crud extends Connection
 		return $stmt->execute();
 	}
 
+	public function deleteMessage()
+	{
+		$sql = "DELETE FROM messages WHERE id = :id";
+		$stmt = Connection::prepare($sql);
+		$stmt->bindParam(':id', $this->id);
+		
+		return $stmt->execute();
+	}
+
 	public function read($table, $condition = false, $order = false)
 	{
 		if($order)
@@ -87,6 +97,18 @@ class Crud extends Connection
 
 		if($condition)
 			return $stmt->fetchAll();
+
+		return $stmt->fetch();
+	}
+
+	public function readOne($table, $where, $condition, $value)
+	{
+		$this->where .= $where;
+
+		$sql = "SELECT * FROM `{$table}`{$this->where} {$condition} {$value}";		
+		$stmt = Connection::prepare($sql);
+		$stmt->bindParam(":{$this->where}", $value);
+		$stmt->execute();
 
 		return $stmt->fetch();
 	}
