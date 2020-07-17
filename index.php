@@ -1,3 +1,12 @@
+<?php
+	require_once 'app/admin/connection/Crud.php';
+
+	$crud  		= new Crud;
+	$games 		= $crud->read('games', 1);
+	$spotlight 	= $crud->read('spotlight_game', 0, 1);
+	$contact 	= $crud->read('form_contact', 0, 1);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,8 +16,8 @@
 
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"> 
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">	
-	<link rel="stylesheet" href="assets/css/app.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="app/admin/pages/custom.style.php">
 </head>
 <body>
 
@@ -24,13 +33,13 @@
 		<section class="main__page-container">
 			<div class="page__container-card">
 				<div class="container__card-title">
-					<h6 class="text-uppercase text-white font-weight-bold">Transistor - Red The Singer</h6>
+					<h6 class="text-uppercase text-white font-weight-bold"><?= $spotlight->game_title; ?></h6>
 				</div>
 				<div class="container__card-image">
-					<img src="assets/images/Imagem-card.png" alt="Transistor - Red The Singer">
+					<img src="assets/images/<?= $spotlight->game_image; ?>" alt="<?= $spotlight->game_title; ?>">
 				</div>
 				<div class="container__card-description">
-					<p class="lead text-white text-center">"Olha, o que quer que você esteja pensando, me faça um favor, não solte."</p>
+					<p class="lead text-white text-center">"<?= $spotlight->game_description; ?>"</p>
 				</div>
 			</div>
 		</section>
@@ -38,32 +47,16 @@
 		<!-- CARDS HEROS -->
 		<section class="main__page-heros container-fluid">
 			<div class="page__heros-container row mt-5">
+				<?php foreach ($games as $game): ?>
 				<div class="container__cards-card">
 					<div class="cards__card-top">
-						<img src="assets/images/Grant.png" alt="Grant Hero">
+						<img src="assets/images/<?= $game->game_image; ?>">
 					</div>
 					<div class="cards__card-bottom">
-						<p>A Camerata foi apenas os dois no início, e suas fileiras nunca foram destinadas a exceder um número a ser contado em uma mão</p>
+						<p><?= $game->game_description; ?></p>
 					</div>
 				</div>
-
-				<div class="container__cards-card">
-					<div class="cards__card-top">
-						<img src="assets/images/Red.png" alt="Red Hero">
-					</div>
-					<div class="cards__card-bottom">
-						<p>Red, uma jovem cantora, entrou em posse do Transistor. O grupo Possessores quer tanto ela quanto o Transistor e está perseguindo implacavelmente a sua procura.</p>
-					</div>
-				</div>
-
-				<div class="container__cards-card">
-					<div class="cards__card-top">
-						<img src="assets/images/Sybil.png" alt="Sybil Hero">
-					</div>
-					<div class="cards__card-bottom">
-						<p>Sybil é descrita pelo Transistor como sendo os "olhos e ouvidos" da Camerata.</p>
-					</div>
-				</div>
+				<?php endforeach; ?>
 			</div>
 		</section>
 
@@ -71,9 +64,8 @@
 			<div class="footer__page-formulario container d-flex flex-column justify-content-center align-items-center">
 				<div class="row">
 					<div class="d-flex flex-column justify-content-center align-items-center">
-						<h3 class="text-uppercase font-weight-bold">Formulário</h3>
-						<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam laborum tenetur rerum incidunt dolor unde velit nisi eius, iusto non cupiditate, aliquam perferendis voluptates natus ut et distinctio! Sequi, sit!
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam laborum tenetur rerum incidunt dolor unde velit nisi eius, iusto non cupiditate, aliquam perferendis voluptates natus ut et distinctio! Sequi, sit!</p>
+						<h3 class="text-uppercase font-weight-bold"><?= $contact->form_title; ?></h3>
+						<p class="lead"><?= $contact->form_description; ?></p>
 					</div>
 				</div>
 				<form action="#" class="row col-md-8">

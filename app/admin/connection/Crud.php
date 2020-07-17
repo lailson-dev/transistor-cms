@@ -11,6 +11,8 @@ class Crud extends Connection
 	private $backgroundImage;
 	private $imageGame;
 
+	private $order = '';
+
 	public function setId($id){$this->id = $id;}
 	public function setTitle($title){$this->title = $title;}
 	public function setDescription($description){$this->description = $description;}
@@ -63,9 +65,12 @@ class Crud extends Connection
 		return $stmt->execute();
 	}
 
-	public function read($table, $condition = false)
+	public function read($table, $condition = false, $order = false)
 	{
-		$sql = "SELECT * FROM {$table}";
+		if($order)
+			$this->order = ' ORDER BY ID ASC LIMIT 1';
+
+		$sql = "SELECT * FROM `{$table}`{$this->order}";
 		$stmt = Connection::prepare($sql);
 		$stmt->execute();
 
