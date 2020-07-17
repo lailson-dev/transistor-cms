@@ -63,12 +63,15 @@ class Crud extends Connection
 		return $stmt->execute();
 	}
 
-	public function readAll($table)
+	public function read($table, $condition = false)
 	{
 		$sql = "SELECT * FROM {$table}";
 		$stmt = Connection::prepare($sql);
 		$stmt->execute();
 
-		return $stmt->fetchAll();
+		if($condition)
+			return $stmt->fetchAll();
+
+		return $stmt->fetch();
 	}
 }
